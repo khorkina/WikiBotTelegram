@@ -103,6 +103,7 @@ public class WikiBot extends TelegramLongPollingBot {
         markup.setKeyboard(buttons);
         message.setReplyMarkup(markup);
 
+
         try {
             execute(message);
         } catch (TelegramApiException e) {
