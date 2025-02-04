@@ -7,10 +7,10 @@ import org.telegram.telegrambots.updatesreceivers.DefaultBotSession;
 public class Main {
     public static void main(String[] args) {
         try {
-            // Создаем объект TelegramBotsApi для регистрации бота
+
             TelegramBotsApi botsApi = new TelegramBotsApi(DefaultBotSession.class);
 
-            // Регистрируем нашего бота
+
             botsApi.registerBot(new WikiBot());
 
             System.out.println("Bot successfully started!");

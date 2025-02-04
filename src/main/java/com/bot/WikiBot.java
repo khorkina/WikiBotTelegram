@@ -4,7 +4,6 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
-import org.telegram.telegrambots.meta.api.methods.BotApiMethod;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.CallbackQuery;
 import org.telegram.telegrambots.meta.api.objects.Message;
@@ -15,9 +14,12 @@ import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.InlineKe
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class WikiBot extends TelegramLongPollingBot {
 
+    private static final Logger logger = Logger.getLogger(WikiBot.class.getName());
     private List<String> sresults = new ArrayList<>();
     private List<String> links = new ArrayList<>();
 
@@ -27,8 +29,11 @@ public class WikiBot extends TelegramLongPollingBot {
             Message message = update.getMessage();
             String text = message.getText();
 
+
+            logUserRequest(message.getChatId(), text);
+
             if (text.equals("/start")) {
-                sendTextMessage(message.getChatId(), "Support the Dev: www.github.com/DeKabilan");
+                sendTextMessage(message.getChatId(), "Hi! Search in WikiBot!");
             } else {
                 handleSearchQuery(message);
             }
@@ -103,7 +108,6 @@ public class WikiBot extends TelegramLongPollingBot {
         markup.setKeyboard(buttons);
         message.setReplyMarkup(markup);
 
-
         try {
             execute(message);
         } catch (TelegramApiException e) {
@@ -122,16 +126,23 @@ public class WikiBot extends TelegramLongPollingBot {
         }
     }
 
+    private void logUserRequest(Long chatId, String text) {
+        String logMessage = "User " + chatId + " sent: " + text;
+        logger.log(Level.INFO, logMessage);
+        System.out.println(logMessage);
+    }
+
     @Override
     public String getBotUsername() {
-        return "YourBotUsername"; // Укажите имя бота
+        return "WikiBot";
     }
 
     @Override
     public String getBotToken() {
-        return "YOUR_BOT_TOKEN"; // Укажите токен бота
+        return "7618073913:AAEzqT6oPtfsAVKtRNwROyNQaMZ0Mtmspk4";
     }
 }
+
 
 
 
