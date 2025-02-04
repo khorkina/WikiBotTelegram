@@ -134,12 +134,12 @@ public class WikiBot extends TelegramLongPollingBot {
 
     @Override
     public String getBotUsername() {
-        return "WikiBot";
+        return "YOUR_BOT_NAME";
     }
 
     @Override
     public String getBotToken() {
-        return "7618073913:AAEzqT6oPtfsAVKtRNwROyNQaMZ0Mtmspk4";
+        return "YOUR_BOT_TOKEN";
     }
 }
 
